@@ -5,7 +5,8 @@ metadata:
   labels:
     {{- include "nsq.commonLabels" . | nindent 4 }}
 spec:
-  clusterIP: None
+#  clusterIP: None
+  type: ClusterIP
   ports:
   - port: 4160
     name: tcp

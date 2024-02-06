@@ -39,7 +39,8 @@ nsqlookupd:
 
   serviceAccountName:
 
-  nodeSelector: {}
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: nodegroup_cpu
 
   tolerations: []
 
@@ -57,10 +58,10 @@ nsqadmin:
   extraArgs: []
 
   service:
-    type: ClusterIP
+    type: NodePort
     annotations:
     port: 4171
-    nodePort:
+    nodePort: 30171
 
   ingress:
     enabled: false
@@ -96,7 +97,8 @@ nsqadmin:
 
   serviceAccountName:
 
-  nodeSelector: {}
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: nodegroup_cpu
 
   tolerations: []
 
@@ -132,7 +134,8 @@ nsqd:
     #   cpu: 100m
     #   memory: 128Mi
 
-  nodeSelector: {}
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: nodegroup_cpu
 
   tolerations: []
 
@@ -145,7 +148,7 @@ nsqd:
   persistence:
     enabled: true
     size: 1Gi
-    storageClass: "-"
+    storageClass: "gp2"
     accessModes:
       - ReadWriteOnce
 
